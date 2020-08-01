@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -16,40 +17,52 @@ import java.util.Scanner;
 public class Task_3 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); // Создаем экземпляр класса Scanner для считывания чисел из консоли
-        Calculate calculate = new Calculate(scan); // Создание экземпляра класса калькулятора,который на вход принимает данные из сканера
-        calculate.operation(scan); // Вызов метода operation экземпляра созданного класса calculate
+        //Выбор операции
+        System.out.println("Если хотите запустить калькулятор,введите номер 1, А если поиск максимального слова - 2");
+        int choice = scan.nextInt();
+        switch (choice) {
+            case 1:
+                Calculate calculate = new Calculate(scan); // Создание экземпляра класса калькулятора,который на вход принимает данные из сканера
+                calculate.operation(scan); // Вызов метода operation экземпляра созданного класса calculate
+                break;
+            case 2:
+                MaxArray maxArray = new MaxArray (scan); // Создание экземпляра класса поиска максимального массива,который на вход принимает данные из сканера
+                maxArray.maxOperation(); //вызов метода подсчета максимального слова в массиве
+
+                break;
+            default:
+                System.out.println("Операция не верна");
         scan.close(); //Закрытие сканера
-
+        }
     }
-
     /**
      * Класс калькулятора и описание его методов
      */
-    public static class Calculate {
+    private static class Calculate {
         double a;
         double b;
 
         /**
          * @param scan экземпляр класса Scanner с помощью данного параметра считываются данные из консоли
-         *             Конструктор позволяет на вход получать число а и b из консоли и проверить формат введенных данных.
+         * Конструктор позволяет на вход получать число а и b из консоли и проверить формат введенных данных.
          */
-        public Calculate(Scanner scan) throws NumberFormatException {
+        private Calculate(Scanner scan) throws NumberFormatException {
             while (true) {
                 try{
-                     System.out.println("Введите число a");
-                     a = Double.parseDouble(scan.nextLine().replace(',','.'));  // Добавлена проверка на то что введена цифра в формате double, если это не так, то выдается ошибка.
+                    System.out.println("Введите число a");
+                    a = Double.parseDouble(scan.next().replace(',','.'));  // Добавлена проверка на то что введена цифра в формате double, если это не так, то выдается ошибка.
                     // Замена a=scan.nextDouble();. Запятая меняется на точку для корректного парсинга строки ввода с консоли
-                     break;
+                    break;
                 } catch (NumberFormatException e) {
                     System.out.println("Неверный формат данных");
                 }
             }
             while (true) {
                 try {
-                      System.out.println("Введите число b");
-                      b = Double.parseDouble(scan.nextLine().replace(',','.')); // Добавлена проверка на то что введена цифра в формате double, если это не так, то выдается ошибка.
+                    System.out.println("Введите число b");
+                    b = Double.parseDouble(scan.next().replace(',','.')); // Добавлена проверка на то что введена цифра в формате double, если это не так, то выдается ошибка.
                     // Замена b = scan.nextDouble();. Запятая меняется на точку для корректного парсинга строки ввода с консоли
-                      break;
+                    break;
                 } catch (NumberFormatException e) {
                     System.out.println("Неверный формат данных");
                 }
@@ -58,9 +71,9 @@ public class Task_3 {
 
         /**
          * @param scan экземпляр класса Scanner с помощью данного параметра считываются данные из консоли
-         *             Метод operation позволяет вводить операцию и выполнять ее над введенными ранее числами a и b
+         * Метод operation позволяет вводить операцию и выполнять ее над введенными ранее числами a и b
          */
-        public void operation(Scanner scan) {
+        private void operation(Scanner scan) {
             char oper;
             System.out.println("Введите операцию: '+', '/', '-', '*'");
 
@@ -85,6 +98,34 @@ public class Task_3 {
         }
 
     }
+    private static class MaxArray {
+        int i, j;
+        String[] array;
+        private MaxArray(Scanner scan) {
+            System.out.println("Задайте размер массива ");
+            i = scan.nextInt();
+            array = new String[i];
 
+            for (j = 0; j < i; j++) {
+                System.out.println("Введите значение элемента массив с номером (без пробелом) " + j);
+                String n = scan.next();
+                array[j] = n;
+            }
+            // Использовался для тестирования String g = Arrays.toString(array);
+            // Использовался для тестирования  System.out.println("массив: "+g);
+        }
 
+        /**
+         *   Метод maxOperation позволяет находить максимум массива
+         */
+        private void maxOperation() {
+            String currentWord = "";
+            for(int j = 0; j < i; j++) {
+                if(currentWord.length() < array[j].length())
+                    currentWord  = array [j];
+            }
+            System.out.println("Самое длинное слово: " + currentWord);
+
+        }
+    }
 }

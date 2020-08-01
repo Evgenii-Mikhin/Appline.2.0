@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
-/** Задание №2
+/**
+ * Задание №2
+ *
  * @author Evgenii-Mikhin
  * 1. Реализовать сложение дробных чисел, которые пользователь вводит в консоль.
  * 2. Использовать комментарии и JavaDoc при описании метода.
@@ -21,14 +23,15 @@ public class Task_2 {
     /**
      * Класс калькулятора и описание его методов
      */
-    public static class Calculate {
+    private static class Calculate {
         double a;
         double b;
+
         /**
          * @param scan экземпляр класса Scanner с помощью данного параметра считываются данные из консоли
-         * Конструктор позволяет на вход получать число а и b из консоли
+         *             Конструктор позволяет на вход получать число а и b из консоли
          */
-        public Calculate(Scanner scan) {
+        private Calculate(Scanner scan) {
             System.out.println("Введите число a, разделитель запятая");
             a = scan.nextDouble(); // В дальнейнем можно добавить форматирование разделителя
             System.out.println("Введите число b, разделитель запятая");
@@ -38,9 +41,9 @@ public class Task_2 {
 
         /**
          * @param scan экземпляр класса Scanner с помощью данного параметра считываются данные из консоли
-         * Метод operation позволяет вводить операцию (пока только +) и выполнять ее над введенными ранее числами a и b
+         *             Метод operation позволяет вводить операцию (пока только +) и выполнять ее над введенными ранее числами a и b
          */
-        public void operation (Scanner scan) {
+        private void operation(Scanner scan) {
             char oper;
             System.out.println("Введите операцию: '+', '/', '-', '*'");
 
