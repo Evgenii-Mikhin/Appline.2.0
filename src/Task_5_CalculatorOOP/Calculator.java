@@ -3,7 +3,7 @@ package Task_5_CalculatorOOP;
 import java.util.Scanner;
 
 /**
- * Задание №5
+ * Задание №5;7.
  *
  * @author Evgenii-Mikhin
  *  Реализовать калькулятор в стиле ООП. Архитектуру приложения продумать самостоятельно.
@@ -11,31 +11,41 @@ import java.util.Scanner;
 
  */
 public class Calculator {
-
     public static void main(String[] args) {
+        double a,b;
         Scanner scan = new Scanner(System.in); // Создаем экземпляр класса Scanner для считывания чисел из консоли
-        System.out.println("Введите число a, разделитель запятая");
-        double a =scan.nextDouble();   //получение double a c консоли
-        UserNumber aNumber = new UserNumber(scan);
-        aNumber.setNumber(a);   //Вызов метода setNumber
-        System.out.println("Введите число b, разделитель запятая");
+        while (true) {
+            try {
+                System.out.println("Введите число a, разделитель запятая");
+                a = Double.parseDouble(scan.next().replace(',', '.'));  // Добавлена проверка на то что введена цифра в формате double, если это не так, то выдается ошибка
+                UserNumber aNumber = new UserNumber(scan);
+                aNumber.setNumber(a);   //Вызов метода setNumber
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный формат данных");
+            }
+        }
 
-
-        double b =scan.nextDouble();    //получение double b c консоли
-        UserNumber bNumber = new UserNumber(scan);
-        bNumber.setNumber(b);   //Вызов метода setNumber
+        while (true) {
+            try {
+                System.out.println("Введите число b, разделитель запятая");
+                b = Double.parseDouble(scan.next().replace(',', '.'));  // Добавлена проверка на то что введена цифра в формате double, если это не так, то выдается ошибка
+                UserNumber bNumber = new UserNumber(scan);
+                bNumber.setNumber(b);   //Вызов метода setNumber
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный формат данных");
+            }
+        }
         System.out.println("Введите операцию: '+', '/', '-', '*'");
         char oper = scan.next().charAt(0); //получение параметра oper c консоли
-        Operation operation= new Operation(scan);
+        Operation operation = new Operation(scan);
 
         operation.setOper(oper);
-        operation.setResult(a,b,oper); //Вызов метода setResult
+        operation.setResult(a, b, oper); //Вызов метода setResult
 
         scan.close(); //Закрытие сканера
 
 
     }
-
-
 }
-

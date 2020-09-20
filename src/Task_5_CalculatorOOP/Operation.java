@@ -5,6 +5,7 @@
  */
 package Task_5_CalculatorOOP;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Operation {
@@ -54,8 +55,12 @@ public class Operation {
                 System.out.printf("Результат: %.4f %n", result);
                 break;
             case '/':
+                if (number2 != 0.0){
                 result = number1 / number2;
                 System.out.printf("Результат: %.4f %n", result);
+                } else {
+                    System.out.println("На ноль делить нельзя"); // Не используется конструкция try-catch c ArithmeticException, тк при делении double на 0.0, JVM вернет бесконечность (NaN). Работает только с целыи числами.
+                }
                 break;
 
 

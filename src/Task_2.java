@@ -12,7 +12,7 @@ import java.util.Scanner;
  * 6. Добавить возможность выбора другой операции (сложение, вычитание, деление, умножение)
  */
 public class Task_2 {
-    public static void main(String[] args) {
+public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); // Создаем экземпляр класса Scanner для считывания чисел из консоли
         Calculate calculate = new Calculate(scan); // Создание экземпляра класса калькулятора,который на вход принимает данные из сканера
         calculate.operation(scan); // Вызов метода operation экземпляра созданного класса calculate
