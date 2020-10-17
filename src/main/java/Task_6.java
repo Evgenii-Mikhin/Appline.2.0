@@ -16,7 +16,7 @@ import java.util.*;
         public static void main(String[] args) {
             Scanner scan = null;
             try {
-                scan = new Scanner(new File("src\\Task_6_text\\MnM.txt")); //считывание файла
+                scan = new Scanner(new File("src\\main\\java\\Task_6_text\\MnM.txt")); //считывание файла
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

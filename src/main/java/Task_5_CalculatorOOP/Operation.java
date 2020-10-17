@@ -26,10 +26,10 @@ public class Operation {
             case '-':
             case '*':
             case '/':
-                System.out.println("Операция принята");
+                System.out.print("Операция принята");
                 break;
             default:
-                System.out.println("Такая операция не реализована");
+                System.out.print("Такая операция не реализована");
 
         }
 
